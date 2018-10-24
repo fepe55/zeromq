@@ -10,7 +10,9 @@ while True:
     message = socket.recv()
     action, ip = str(message).split(': ')
     # print('Received action {} from ip {}'.format(action, ip))
-    
+
+    # action = action.decode('utf-8')
+
     if action not in ['ban', 'unban']:
         socket.send(b'Wrong action')
     else:
