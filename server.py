@@ -10,11 +10,14 @@ while True:
     message = socket.recv()
     action, ip = str(message).split(': ')
     # print('Received action {} from ip {}'.format(action, ip))
-
-    comando = 'ls -l'
-    subprocess.run(comando.split(' '))
-
-    time.sleep(1)
-
-    #  Send reply back to client
-    socket.send(b'Done')
+    
+    if action not in ['ban', 'unban']:
+        socket.send(b'Wrong action')
+    else:
+        if action == 'ban':
+            command = 'ls -l'
+        if action == 'unban':
+            command = 'ls -l'
+        subprocess.run(command.split(' '))
+        #  Send reply back to client
+        socket.send(b'Done')
